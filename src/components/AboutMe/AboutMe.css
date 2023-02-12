@@ -1,0 +1,153 @@
+.aboutMe {
+    background-color: #202020;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    color: #FFFFFF;
+}
+
+.aboutMe__text {
+    font-weight: 400;
+    font-size: 22px;
+    Line-height: 26.63px;
+    margin: 100px 70px 0;
+    padding-bottom: 23px;
+    border-bottom: 1px solid #DADADA;
+}
+
+.aboutMe__me {
+    display: flex;
+    margin: 66px 70px 101px;
+    justify-content: space-between;
+}
+
+.about__namefull {
+    Font: Inter;
+    font-weight: 400;
+    font-size: 50px;
+    Line-height: 58px;
+    height: 58px;
+    margin: 0 0 18px 0;
+}
+
+.about__proffessional {
+    Font: Inter;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0 0 26px 0;
+}
+
+.about__hobby {
+    Font: Inter;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    margin: 0 0 99px 0;
+}
+
+.about__github {
+    color: #FFFFFF;
+    text-decoration: none;
+    Font: Inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16.94px;
+}
+
+.about__avatar {
+    width: 270px;
+    height: 327px;
+    border-radius: 10px;
+}
+@media (max-width:780px) {
+    .aboutMe__text {
+        margin: 90px 70px 0;
+    }
+}
+@media (max-width:780px) {
+    .aboutMe__me {
+        margin: 66px 70px 90px;
+    }
+}
+@media (max-width:780px) {
+    .about__namefull {
+        font-size: 50px;
+        Line-height: 50px;
+        height: 58px;
+        margin: 0 0 16px 0;
+    }
+}
+@media (max-width:780px) {
+    .about__proffessional {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 20px 0;
+    }
+}
+@media (max-width:780px) {
+    .about__hobby {
+        font-size: 12px;
+        line-height: 18px;
+        margin: 0 0 87px 0;
+    }
+}
+@media (max-width:780px) {
+    .about__avatar {
+        width: 255px;
+        height: 307px;
+    }
+}
+
+@media (max-width:570px) {
+    .aboutMe {
+        padding: 70px 14px;
+    }
+}
+@media (max-width:570px) {
+    .aboutMe__text {
+        margin: 0;
+        padding-bottom: 28px;
+        font-size: 18px;
+        Line-height: 21.78px;
+    }
+}
+@media (max-width:570px) {
+    .aboutMe__me {
+        margin: 60px auto 0 auto;
+        flex-direction: column-reverse;
+    }
+}
+@media (max-width:570px) {
+    .about__avatar {
+        max-width: 292px;
+        max-height: 352px;
+    }
+}
+@media (max-width:570px) {
+    .about__namefull {
+        font-size: 30px;
+        Line-height: 36.31px;
+        margin: 40px 0 20px;
+    }
+}
+@media (max-width:570px) {
+    .about__proffessional {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 0 0 20px 0;
+    }
+}
+@media (max-width:780px) {
+    .about__hobby {
+        font-size: 11px;
+        line-height: 16px;
+        margin: 0 0 40px 0;
+    }
+}
+@media (max-width:290px) {
+    .about__avatar {
+        max-width: 200px;
+        max-height: 200px;
+    }
+}

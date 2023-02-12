@@ -1,0 +1,19 @@
+.navTab__bar {
+    display: flex;
+    background-color: #202020; 
+    justify-content: space-evenly;
+    height:41PX;
+    text-align:center;
+}
+
+.navTab__link {
+    color:#FFFFFF;
+    margin-top: 10px;
+    text-decoration: underline;
+}
+
+@media (max-width:780px) {
+    .navTab__bar{
+        display: none;
+    }
+}

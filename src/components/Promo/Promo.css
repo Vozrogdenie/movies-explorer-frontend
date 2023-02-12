@@ -1,0 +1,124 @@
+.promo__bar {
+    display: flex;
+    background-color: #073042;
+    height: 537px;
+    justify-content: space-between;
+}
+
+.promo__text {
+
+}
+.promo__title {
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    color: #fff;
+    margin:65px 0 37px 71px;
+}
+
+.promo__paragrah {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15.73px;
+    color: #fff;
+    opacity: 50%;
+    margin: 0 0 150px 71px;
+}
+
+.promo__img {
+    width: 310px;
+    height: 313px;
+    margin: 65px 71px 0 0;
+}
+
+.promo__learn {
+    width: 129px;
+    height: 37px;
+    background-color:transparent;
+    opacity: 60%;
+    border-radius:3px;
+    font-size:12px;
+    line-height:16px;
+    color:#ffff;
+    font-weight:500;
+    border-color: white;
+    border-width: 1px;
+    margin: 0 0 0 71px;
+    padding: 0;
+    text-align:center;
+    cursor:pointer;
+}
+
+@media (max-width:780px) {
+    .promo__bar {
+        height: 850px;
+        flex-direction: column-reverse;
+        padding: 0;
+        text-align: center;
+        align-items: center;
+        justify-content: start;
+    }
+}
+@media (max-width:780px) {
+    .promo__title {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 50px;
+    margin:48px 0 0 0;
+    }
+}
+@media (max-width:780px) {
+    .promo__paragrah{
+        margin: 22px 0 92px 0;
+    }
+}
+@media (max-width:780px) {
+    .promo__img{
+        margin: 65px 0 0 0;
+    }
+}
+@media (max-width:780px) {
+    .promo__learn{
+        margin: 0 0 76px 0;
+    }
+}
+@media (max-width:570px) {
+    .promo__img{
+        margin: 70px 0 0 0;
+        width: 210px;
+        height: 206px;
+    }
+}
+@media (max-width:570px) {
+    .promo__title {
+        font-size: 30px;
+        line-height: 38px;
+        margin:44px 0 0 0;
+    }
+}
+@media (max-width:1064px) {
+    .promo__paragrah{
+        margin: 0 0 100px 71px;
+    }
+}
+@media (max-width:852px) {
+    .promo__paragrah{
+        margin: 0 0 10px 71px;
+    }
+}
+@media (max-width:780px) {
+    .promo__paragrah{
+        margin: 24px 30px 80px;
+    }
+}
+@media (max-width:780px) {
+    .promo__bar {
+        height: auto;
+    }
+}
+
+@media (max-width:570px) {
+    .promo__learn{
+        margin: 0 0 30px 0;
+    }
+}
