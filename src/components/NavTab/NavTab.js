@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 function NavTab() {
     return(
         <div className="navTab__bar">
-            <Link className="navTab__link">О проекте</Link>
-            <Link className="navTab__link">Технологии</Link>
-            <Link className="navTab__link">Студент</Link>
+            <a className="navTab__link" href="#project">О проекте</a>
+            <a className="navTab__link" href="#techs">Технологии</a>
+            <a className="navTab__link" href="#student">Студент</a>
         </div>
     )
 }

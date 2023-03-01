@@ -10,14 +10,14 @@
     font-weight: 400;
     font-size: 22px;
     Line-height: 26.63px;
-    margin: 100px 70px 0;
+    margin: 100px 0 0;
     padding-bottom: 23px;
     border-bottom: 1px solid #DADADA;
 }
 
 .aboutMe__me {
     display: flex;
-    margin: 66px 70px 101px;
+    margin: 66px 0 101px;
     justify-content: space-between;
 }
 

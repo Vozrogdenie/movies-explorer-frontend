@@ -11,6 +11,10 @@
     margin-top: 10px;
     text-decoration: underline;
 }
+ a:hover{
+    color: #3DDC84;
+}
+
 
 @media (max-width:780px) {
     .navTab__bar{

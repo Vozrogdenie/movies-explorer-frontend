@@ -1,6 +1,6 @@
 function Techs() {
     return(
-        <div className="techs">
+        <div className="techs" id="techs">
             <div className="techs__text">Технологии</div>
             <h3 className="techs__techs">7 технологий</h3>
             <p className="techs__p-diploma">На курсе веб-разработки мы освоили технологии, которые применили<br/>в дипломном проекте.</p>

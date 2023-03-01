@@ -5,9 +5,14 @@ import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio";
 import Footer from "../Footer/Footer";
-function Main() {
+import Header from "../Header/Header";
+function Main(props) {
     return(
         <div>
+        <Header
+        loggedIn={props.loggedIn}
+        link={'Регистрация '}
+        linkTwo={'Войти'} />
         <Promo/>
         <NavTab/>
         <AboutProject/>

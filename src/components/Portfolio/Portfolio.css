@@ -1,7 +1,7 @@
 .portfolio {
     background-color: #202020;
     padding-bottom: 204px;
-    margin: 0 70px 0;
+    margin: 0 0 0;
 }
 
 .portfolio__portfolio {
@@ -39,11 +39,6 @@
 }
 
 @media (max-width:780px) {
-    .portfolio__sayt {
-        font-size: 28px;
-    }
-}
-@media (max-width:780px) {
     .portfolio__link {
         border-bottom: #E6E6E6;
         border-bottom-width: 1px;
@@ -76,5 +71,12 @@
 @media (max-width:570px) {
     .portfolio {
         padding-bottom: 149px;
+    }
+}
+@media (max-width:570px) {
+    .portfolio__sayt {
+        font-size: 18px;
+        line-height: 28px;
+        width: 200px;
     }
 }

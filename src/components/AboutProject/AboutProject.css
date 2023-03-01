@@ -2,7 +2,7 @@
     background-color: #202020;
     display:flex;
     flex-direction:column;
-    padding: 110px 70px 83px;
+    padding: 110px 0 83px;
 }
 .aboutProject__text{
     margin-left: auto;
@@ -17,6 +17,7 @@
 .aboutProject__paragrah{
     display: flex;
     margin: 0 0 110px 0;
+    justify-content: space-between;
 }
 .aboutProject__paragrahOne{
     max-width:550px;
@@ -66,7 +67,7 @@
 }
 .aboutProject__four {
     height: 36px;
-    width: 912px;
+    width: 1052px;
     background-color: #303030;
 }
 .aboutProject__back {

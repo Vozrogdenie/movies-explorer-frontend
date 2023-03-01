@@ -1,16 +1,14 @@
-.root {
-    margin: 0;
-    color:#FFFFFF;
-}
-.header{
+.header {
     background-color: #202020;
     display: flex;
     height: 42px;
     justify-content: space-between;
-    padding: 20px 71px;
+    padding: 20px 0;
 }
-.header__block {
-    align-self: center;
+
+.header__record {
+    display: flex;
+    align-items: center;
 }
 .header__link {
     font-weight: 500;
@@ -20,45 +18,250 @@
     text-align: center;
     color: #ffff;
 }
+
 .header__linkTwo {
     color: black;
     font-weight: 500;
     size: 12px;
     line-height: 16px;
     text-decoration: none;
-    text-align: center;  
+    text-align: center;
 }
+
 .header__button {
     width: 76px;
     height: 33px;
     background-color: #3DDC84;
     margin-left: 32px;
     border-radius: 3px;
+    border: 0;
+}
+
+.header__registered {
+    background-color: #202020;
+    display: flex;
+    height: 42px;
+    padding: 28px 0;
+    align-items: center;
+    color: #ffff;
+    justify-content: space-between;
+    margin-bottom: 70px;
+
+}
+
+.header__block {
+    display: flex;
+    align-items: center;
+}
+
+.header__linkRegistered {
+    font-weight: 500;
+    size: 13px;
+    line-height: 18px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.header__linkTwoRegistered {
+    font-weight: 400;
+    size: 13px;
+    line-height: 18px;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 16px;
+}
+
+.header__accaunt {
+    size: 13px;
+    line-height: 12px;
+    margin-left: 11px;
+    margin-right: 10px;
+}
+
+.header__humen {
+    height: 10.67px;
+    width: 10.38px;
+}
+
+.heaader__accaunt {
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50px;
+    background-color: #313131;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer
+}
+
+.header__registeredAccaunt {
+    height: 32px;
+    align-items: center;
+    border-radius: 40px;
+    font-weight: 500;
+    size: 13px;
+    line-height: 12px;
+    display: flex;
+}
+
+.header__burger {
+    display: none;
+    z-index: 50;
+}
+
+.header__logo {
+    margin-right: 44px;
+}
+.header__open {
+    display: none;
+}
+.header__close {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-self: center;
+}
+
+@media (max-width:1360px) {
+    .header__registered {
+        margin: 0 30px;
+    }
+    .header {
+        padding: 20px 30px;
+    }
 }
 
 @media (max-width:780px) {
-    .header{
+    .header__burger {
+        display: block;
+        position: relative;
+        width: 22px;
+        height: 20.5px;
+    }
+
+    .header__burger span {
+        position: absolute;
+        background-color: #FFFFFF;
+        left: 0;
+        width: 22px;
+        height: 2.5px;
+        top: 9px;
+    }
+
+    .header__burger::before,
+    .header__burger::after {
+        content: '';
+        background-color: #FFFFFF;
+        position: absolute;
+        width: 22px;
+        height: 2.5px;
+        left: 0;
+    }
+
+    .header__burger::before {
+        top: 0;
+    }
+
+    .header__burger::after {
+        bottom: 0;
+    }
+}
+
+@media (max-width:780px) {
+    .header {
         padding: 18px 30px 18px 30px;
     }
-}
-@media (max-width:320px) {
-    .header{
-        padding: 18px 14px 18px 14px;
+
+    .header__registered {
+        margin-bottom: 86px;
+
+    }
+    .active {
+        background-image: url(../../images/Group.png);
+        z-index: 60;
+        width: 27px;
+        height: 27px;
     }
 }
+
+@media (max-width:780px) {
+    .header__link {
+        padding: 0;
+        display: flex;
+        align-items: center;
+    }
+    .header__logo {
+        padding: 0;
+    }
+    .header__close {
+        display: none;
+    }
+
+    .header__open {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 70%;
+        height: 100%;
+        background-color: #2b2a2a;
+        ;
+        flex-direction: column;
+        padding: 40px 0 0 0;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+    }
+
+    .header__linkRegistered {
+        padding-bottom: 28px;
+        size: 18px;
+        line-height: 21.78px;
+    }
+
+    .header__main {
+        z-index: 5;
+        padding-bottom: 28px;
+        font-weight: 500;
+        size: 18px;
+        line-height: 21.78px;
+        margin-top: 121px;
+    }
+
+    .header__linkTwoRegistered {
+        size: 18px;
+        line-height: 21.78px;
+        margin-bottom: 400px;
+    }
+
+    .header__block {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .header__registeredAccaunt {
+        display: flex;
+
+    }
+}
+
 @media (max-width:320px) {
+    .header {
+        padding: 18px 14px 18px 14px;
+    }
     .header__button {
         width: 54px;
         height: 26px;
     }
-}
-@media (max-width:320px) {
     .header__linkTwo {
         size: 10px;
     }
-}
-@media (max-width:320px) {
     .header__link {
         size: 10px;
+    }
+    .header__registered {
+        margin-bottom: 98px;
+    }
+    .header__open {
+        width: 100%;
     }
 }
