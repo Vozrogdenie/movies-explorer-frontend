@@ -19,7 +19,7 @@ function Profile({hello, name, email}) {
                 <form className="profile__form">
                     <div className="profile__input" >
                         <label className="profile__label" >Имя</label>
-                        <input className="profile__name" id="eee" placeholder="Имя" disabled={isDisabled}   defaultValue={name}></input>
+                        <input className="profile__name" placeholder="Имя" disabled={isDisabled}   defaultValue={name}></input>
                     </div>
                     <div className="profile__input" >
                         <label className="profile__label" >E-mail</label>
