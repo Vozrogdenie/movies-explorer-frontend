@@ -1,0 +1,24 @@
+.navTab {
+    display: flex;
+    background-color: #202020; 
+    justify-content: space-evenly;
+    height:41PX;
+    text-align:center;
+}
+
+.navTab__link {
+    font-family: 'Inter', Arial, sans-serif;
+    color:#FFFFFF;
+    margin-top: 10px;
+    text-decoration: underline;
+}
+ a:hover{
+    color: #3DDC84;
+}
+
+
+@media (max-width:780px) {
+    .navTab{
+        display: none;
+    }
+}
