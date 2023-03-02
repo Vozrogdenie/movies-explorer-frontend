@@ -22,7 +22,7 @@ function MoviesCard(props) {
     return (
 
         <>
-            { location.pathname = 'savedMovies' ?
+            { window.location.pathname === '/saved-movies' ?
                 <div className="moviesCard">
                     <button className="moviesCard__trachMovies" type="button" aria-label="Удалить фильм" >
                         <img className="moviesCard__trach" src={trach} alt="Удалить" />

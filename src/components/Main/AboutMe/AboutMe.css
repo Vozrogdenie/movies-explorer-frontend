@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     color: #FFFFFF;
+    padding: 0 70px;
 }
 
 .aboutMe__text {
@@ -62,12 +63,15 @@
 }
 @media (max-width:780px) {
     .aboutMe__text {
-        margin: 90px 70px 0;
+        margin: 90px 0 0;
     }
 }
 @media (max-width:780px) {
     .aboutMe__me {
-        margin: 66px 70px 90px;
+        margin: 66px 0 90px;
+    }
+    .aboutMe {
+        padding: 0 50px;
     }
 }
 @media (max-width:780px) {
@@ -90,6 +94,7 @@
         font-size: 12px;
         line-height: 18px;
         margin: 0 0 87px 0;
+        height: 108px;
     }
 }
 @media (max-width:780px) {
@@ -138,7 +143,7 @@
         margin: 0 0 20px 0;
     }
 }
-@media (max-width:780px) {
+@media (max-width:570px) {
     .about__hobby {
         font-size: 11px;
         line-height: 16px;

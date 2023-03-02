@@ -3,7 +3,10 @@
     display: flex;
     height: 42px;
     justify-content: space-between;
-    padding: 20px 0;
+    padding: 20px 70px;
+}
+.header__main {
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 .header__record {
@@ -17,6 +20,7 @@
     text-decoration: none;
     text-align: center;
     color: #ffff;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 .header__linkTwo {
@@ -26,6 +30,7 @@
     line-height: 16px;
     text-decoration: none;
     text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 .header__button {
@@ -46,7 +51,7 @@
     color: #ffff;
     justify-content: space-between;
     margin-bottom: 70px;
-
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 .header__block {
@@ -60,6 +65,11 @@
     line-height: 18px;
     text-decoration: none;
     text-align: center;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+a::after{
+    border-bottom: 1px solid ;
 }
 
 .header__linkTwoRegistered {
@@ -69,6 +79,7 @@
     text-decoration: none;
     text-align: center;
     margin-left: 16px;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 .header__accaunt {
@@ -76,6 +87,7 @@
     line-height: 12px;
     margin-left: 11px;
     margin-right: 10px;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 .header__humen {
@@ -91,7 +103,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: pointer
+    cursor: pointer;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 .header__registeredAccaunt {
@@ -102,11 +115,13 @@
     size: 13px;
     line-height: 12px;
     display: flex;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 .header__burger {
     display: none;
     z-index: 50;
+    cursor: pointer;
 }
 
 .header__logo {
@@ -259,9 +274,7 @@
         size: 10px;
     }
     .header__registered {
-        margin-bottom: 98px;
-    }
-    .header__open {
-        width: 100%;
+        margin:0 14px 110px;
+        padding: 14px 0 0;
     }
 }

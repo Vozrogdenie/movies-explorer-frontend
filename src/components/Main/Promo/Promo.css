@@ -1,4 +1,4 @@
-.promo__bar {
+.promo {
     display: flex;
     background-color: #073042;
     height: 537px;
@@ -55,13 +55,16 @@
 }
 
 @media (max-width:780px) {
-    .promo__bar {
+    .promo {
         height: 850px;
         flex-direction: column-reverse;
         padding: 0;
         text-align: center;
         align-items: center;
         justify-content: start;
+    }
+    .promo__img{
+        margin: 140px 0 0 0;
     }
 }
 @media (max-width:780px) {
@@ -75,11 +78,6 @@
 @media (max-width:780px) {
     .promo__paragrah{
         margin: 22px 0 92px 0;
-    }
-}
-@media (max-width:952px) {
-    .promo__img{
-        margin: 65px 0 0 0;
     }
 }
 @media (max-width:780px) {
@@ -113,7 +111,7 @@
     }
 }
 @media (max-width:780px) {
-    .promo__bar {
+    .promo {
         height: auto;
     }
 }

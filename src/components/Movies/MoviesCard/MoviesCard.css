@@ -88,7 +88,7 @@
     align-items: center;
 }
 .moviesCard:hover .moviesCard__trachMovies {
-    display: block;
+    display: flex;
 }
 .moviesCard_save:hover {
     background-color: #3DDC84;
@@ -102,44 +102,37 @@
     display: block;
 }
 
-@media (max-width:1360px) {
+@media (max-width:1171px) {
     .moviesCard__video {
         width: 339px;
         height: 190px;
-        flex-direction: column;
-
-    }
-
-    .moviesCard {
-        width: 339px;
-        height: 190px;
+        
     }
 
     .moviesCard__description {
         margin-top: 25px;
     }
-
-}
-
-@media (max-width:780px) {
-    .moviesCard__video {
-        width: 300px;
-        height: 168px;
-        flex-direction: column;
-    }
-
     .moviesCard__description {
         margin-top: 16px;
     }
 
     .moviesCard__title {
-        font-size: 12px;
-        line-height: 14.52px;
+        font-size: 13px;
+        line-height: 15.73px;
     }
 
-    .moviesCard {
-        width: 300px;
-        height: 168px;
+}
 
+@media (max-width:766px) {
+
+    .moviesCard__video {
+        width: 300px;
+        height: 199px;
+        
+    }
+
+    .moviesCard__title {
+        font-size: 12px;
+        line-height: 14.52px;
     }
 }

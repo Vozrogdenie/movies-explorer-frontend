@@ -1,6 +1,6 @@
 function AboutProject() {
     return (
-        <div className="aboutProject__about" id="project">
+        <section className="aboutProject" id="project">
             <h2 className="aboutProject__text">О проекте</h2>
             <div className="aboutProject__paragrah">
                 <div className="aboutProject__paragrahOne">
@@ -21,7 +21,7 @@ function AboutProject() {
                     <h3 className="aboutProject__fourText">4 недели</h3>
                     <div className="aboutProject__front">Front-end</div></div>
             </div>
-        </div>
+        </section>
     )
 }
 

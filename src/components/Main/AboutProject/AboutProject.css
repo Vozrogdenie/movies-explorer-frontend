@@ -1,8 +1,8 @@
-.aboutProject__about{
+.aboutProject{
     background-color: #202020;
     display:flex;
     flex-direction:column;
-    padding: 110px 0 83px;
+    padding: 110px 70px 83px;
 }
 .aboutProject__text{
     margin-left: auto;
@@ -95,6 +95,9 @@
         font-size:12px;
         Line-height:18px;
     }
+    .aboutProject{
+        padding: 90px 50px 114px;
+    }
 }
 @media (max-width:780px) {
     .aboutProject__paragrahOne{
@@ -113,15 +116,14 @@
     }
 }
 @media (max-width:570px) {
-    .aboutProject__about{
-        padding: 70px 18px 70px;
-        height: 567px;
+    .aboutProject{
+        padding: 70px 18px 93px;
     }
 }
 @media (max-width:320px) {
     .aboutProject__text{
         margin: 0 0 60px;
-        padding-bottom: 23px;
+        padding-bottom: 28px;
         font-size: 18px;
         Line-height:21.78px;
     }

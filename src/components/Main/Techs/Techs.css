@@ -58,7 +58,7 @@
 
 @media (max-width:780px) {
     .techs__text{
-        margin-bottom:  80px;
+        margin: 90px 50px 80px;
     }
 }
 @media (max-width:780px) {

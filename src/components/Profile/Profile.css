@@ -104,10 +104,14 @@
     }
     .profile__form {
         margin-top: 96px;
+        width: 410px;
+    }
+    .profile__edit{
+        margin: 194px 0 16px;
     }
 }
 
-@media (max-width:320px) {
+@media (max-width:460px) {
     .profile {
         margin-top: 70px;
     }
@@ -116,5 +120,11 @@
     }
     .profile__exit {
         margin-bottom: 40px;
+    }
+    .profile__form{
+        width: 260px;
+    }
+    .profile__edit{
+        margin: 363px 0 16px;
     }
 }

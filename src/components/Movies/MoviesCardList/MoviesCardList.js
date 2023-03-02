@@ -9,7 +9,7 @@ function MoviesCardList() {
     const movies = React.useContext(CurrentMoviesContext)
     
     return (
-        <>
+        <section>
             <div className="moviesCardList">
                 <MoviesCard/>
                 <MoviesCard/>
@@ -28,7 +28,7 @@ function MoviesCardList() {
                 <button className="moviesCardList__more">Ещё</button>
             </div>
             <Footer />
-        </>
+        </section>
     )
 }
 export default MoviesCardList;

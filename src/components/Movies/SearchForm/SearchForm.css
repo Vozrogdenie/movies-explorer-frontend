@@ -3,6 +3,7 @@
     padding-bottom: 15px;
     display: flex;
     justify-content: space-between;
+    font-family: 'Inter', Arial, sans-serif;
 }
 .seachForm__input {
     display: block;
@@ -16,6 +17,7 @@
     font-size: 28px;
     font-weight: 500;
     color: #FFFFFF;
+    font-family: 'Inter', Arial, sans-serif;
 }
 .seachForm__loupe {
     width: 15px;
@@ -47,5 +49,18 @@
 @media (max-width:1360px) {
     .searchForm {
         margin: 0 30px;
+    }
+}
+@media (max-width:320px) {
+    .searchForm {
+        margin: 0 14px;
+    }
+    .seachForm__circle {
+        display: none;
+    }
+    .seachForm__input {
+        text-align:start;
+        font-size: 18px;
+        line-height: 21.78px;
     }
 }

@@ -14,7 +14,7 @@ function Profile({hello, name, email}) {
                 accaunt={'Аккаунт'}
                 loggedIn={true}
             />
-            <div className="profile" id="#profile">
+            <section className="profile" id="#profile">
                 <h3 className="profile__helloName">{`Привет ${hello}!`}</h3>
                 <form className="profile__form">
                     <div className="profile__input" >
@@ -29,7 +29,7 @@ function Profile({hello, name, email}) {
                 <button className="profile__edit" onClick={() => change()}  type="button">Редактировать</button>
                 <button className="profile__exit" type="button"><a href="/singin" className="profile__exit"> Выйти из аккаунта</a></button>
 
-            </div>
+            </section>
         </>
     )
 }

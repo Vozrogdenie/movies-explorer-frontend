@@ -2,12 +2,17 @@ import headLogo from '../../images/logo.png'
 import humenAccaunt from '../../images/humenAccaunt.png'
 import close from '../../images/Group.png';
 
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 function Header(props) {
+    const location = useLocation();
     const [burger, setBurger] = useState(false)
-
+    const [style, setStyle]= useState('')
+    const activeStyle = () => {
+       style={ borderBottom:'1px solid'}
+    }
+    
    
 
     function openBurger() {
@@ -48,7 +53,7 @@ function Header(props) {
                         : <div className='header__close'>
                             <div className='header__block'>
 
-                                <a href="/movies" type='button' className="header__linkRegistered" onClick={props.onLogout}> {props.link}</a>
+                                <a href="/movies" type='button' className="header__linkRegistered"  onClick={props.onLogout}> {props.link}</a>
                                 <a href="/saved-movies" className="header__linkTwoRegistered" onClick={props.onLogout}> {props.linkTwo}</a>
                             </div>
                             <div className='header__registeredAccaunt'>
@@ -62,8 +67,8 @@ function Header(props) {
                 <header className="header">
                     <a href="/"  className='header__logo'><img src={headLogo} alt="Логотип" /></a>
                     <div className='header__record'> 
-                        <p  type='button' className="header__link" > <a href="/singin"> {props.link}</a></p>
-                        <button className='header__button' type='button'><a href="/singup" className="header__linkTwo"> {props.linkTwo}</a></button>
+                        <p  type='button' className="header__link" > <a href="/singup"> {props.link}</a></p>
+                        <button className='header__button' type='button'><a href="/singin" className="header__linkTwo"> {props.linkTwo}</a></button>
                     </div>
                 </header>
             }

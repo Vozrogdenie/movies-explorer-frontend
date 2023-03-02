@@ -7,8 +7,8 @@ function Footer() {
             <div className="footer__footer">
                 <p>&copy; 2023</p>
                 <div className="footer__avtor">
-                    <a href="https://practicum.yandex.ru">Яндекс практикум</a>
-                    <a href="https://github.com/Vozrogdenie">Github</a>
+                    <a href="https://practicum.yandex.ru" target="_blank">Яндекс практикум</a>
+                    <a href="https://github.com/Vozrogdenie" target="_blank">Github</a>
                 </div>
             </div>
         </footer>

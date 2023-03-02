@@ -13,6 +13,7 @@
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
+    font-family: 'Inter', Arial, sans-serif;
 }
 
 .filterCheckbox__box {
@@ -52,5 +53,10 @@
 @media (max-width:780px) {
     .filterCheckbox{
         margin: 30px auto 132px;
+    }
+}
+@media (max-width:320px) {
+    .filterCheckbox{
+        margin: 43px auto 91px;
     }
 }

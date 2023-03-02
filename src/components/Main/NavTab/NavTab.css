@@ -1,4 +1,4 @@
-.navTab__bar {
+.navTab {
     display: flex;
     background-color: #202020; 
     justify-content: space-evenly;
@@ -7,6 +7,7 @@
 }
 
 .navTab__link {
+    font-family: 'Inter', Arial, sans-serif;
     color:#FFFFFF;
     margin-top: 10px;
     text-decoration: underline;
@@ -17,7 +18,7 @@
 
 
 @media (max-width:780px) {
-    .navTab__bar{
+    .navTab{
         display: none;
     }
 }
