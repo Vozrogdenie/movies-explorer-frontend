@@ -1,36 +1,60 @@
 import { Routes, Route } from 'react-router-dom';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import SavedMovies from '../SavedMovies/SavedMovies';
-import api from '../../utils/API';
-import { useState } from 'react';
-import React from 'react';
-import { CurrentMoviesContext } from '../CurrentMoviesContext/CurrentMoviesContext'
-function App() {
-    const [loggedIn, setloggedIn] = useState(false)
+import authApi from '../../utils/auth';
+import api from '../../utils/MainApi';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserContext from '../../contexts/UserContext';
 
-    const [moviesSave, setMoviesSave] = useState([])
-    const [movies, setMovies] = useState([])
+function App() {
+    const history = useNavigate();
+    const [name, setName] = useState();
+    const [email, setEmail] = useState();
+    const [loggedIn, setloggedIn] = useState(false);
+
+    useEffect(() => {
+        authApi.checkToken(api._getToken())
+            .then(res => { 
+                setloggedIn(true);
+                setName(res.name);
+                setEmail(res.email);
+            })
+            .catch(err => {
+                setloggedIn(false);
+            });
+    }, []);
+
+    const onLogin = (e, email, password) => {
+        e.preventDefault();
+        authApi.authorization(email, password).then(data => {
+            if (data.token) {
+                history('/movies');
+                localStorage.setItem('jwt', data.token);
+                setloggedIn(true);
+            } else {
+                history('/signin');
+            }
+        });
+    };
 
     return (
-     
-        <Routes>
-            <Route path='/'  element={<Main loggedIn={false}/>}/>
-            <Route path='/movies' element={<Movies loggedIn={true}/>}/>
-            <Route path='/profile' element={<Profile hello={'Evgeniya'}  loggedIn={true} name={'Evgeniya'} email={'dracon@mail.ru'}/>}/>
-            <Route path='/saved-movies' element={<SavedMovies loggedIn={true} />}/>
-            <Route path='/singup' element={<Register/>}/>
-            <Route path='/singin' element={<Login/>}/>
-            <Route path='/*' element={<PageNotFound/>}/>
-        </Routes>
-        
+        <UserContext.Provider value={{name: name, email: email}}>
+            <Routes>
+                <Route path='/'  element={<Main loggedIn={loggedIn}/>}/>
+                <Route path='/movies' element={<Movies loggedIn={loggedIn}/>}/>
+                <Route path='/profile' UserName={name} UserEmail={email} element={<Profile loggedIn={loggedIn}/>}/>
+                <Route path='/saved-movies' element={<SavedMovies loggedIn={loggedIn} />}/>
+                <Route path='/signup' element={<Register/>}/>
+                <Route path='/signin' element={<Login onLogin={onLogin}/>}/>
+                <Route path='/*' element={<PageNotFound/>}/>
+            </Routes>
+        </UserContext.Provider>
     )
 }
 

@@ -1,5 +1,4 @@
 const api_url = "https://api.nomoreparties.co/beatfilm-movies";
-const api_auth = "c7779e8e-b945-41f5-b681-0ea9ccf3c32a";
 
 class Api {
     constructor(api_url){
@@ -16,7 +15,6 @@ class Api {
     async getApiCards(){
         return fetch(`${this._url}`, {
             headers: {
-                
                 'Content-Type': 'application/json'
             }
         }).then(this._handleResponce);

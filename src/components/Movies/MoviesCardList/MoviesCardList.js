@@ -1,29 +1,24 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
-import { CurrentMoviesContext } from "../../CurrentMoviesContext/CurrentMoviesContext";
-import Header from "../../Header/Header";
 import Footer from "../../Footer/Footer";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import MoviesApi from '../../../utils/API';
 
 
 function MoviesCardList() {
-    const movies = React.useContext(CurrentMoviesContext)
+    const [movies, setMovies] = useState([]);
     
+    useEffect(() => {
+        MoviesApi.getApiCards().then(data => {
+            setMovies(data);
+        });
+    })
     return (
         <section>
             <div className="moviesCardList">
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                <MoviesCard/>
-                </div>
+                {movies.map(movie => {
+                    return <MoviesCard card={movie} key={movie.id}/>
+                })}
+            </div>
             <div className="moviesCardList__movies">
                 <button className="moviesCardList__more">Ещё</button>
             </div>

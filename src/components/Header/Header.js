@@ -67,8 +67,8 @@ function Header(props) {
                 <header className="header">
                     <a href="/"  className='header__logo'><img src={headLogo} alt="Логотип" /></a>
                     <div className='header__record'> 
-                        <p  type='button' className="header__link" > <a href="/singup"> {props.link}</a></p>
-                        <button className='header__button' type='button'><a href="/singin" className="header__linkTwo"> {props.linkTwo}</a></button>
+                        <p  type='button' className="header__link" > <a href="/signup"> {props.link}</a></p>
+                        <button className='header__button' type='button'><a href="/signin" className="header__linkTwo"> {props.linkTwo}</a></button>
                     </div>
                 </header>
             }

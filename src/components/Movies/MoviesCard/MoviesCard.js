@@ -27,10 +27,10 @@ function MoviesCard(props) {
                     <button className="moviesCard__trachMovies" type="button" aria-label="Удалить фильм" >
                         <img className="moviesCard__trach" src={trach} alt="Удалить" />
                     </button>
-                    <img className="moviesCard__video" src={video} alt='картинка видео' />
+                    <img className="moviesCard__video" src={'https://api.nomoreparties.co' + props.card.image.url} alt='картинка видео' />
                     <div className="moviesCard__description">
-                        <p className="moviesCard__title">Бег это жизнь</p>
-                        <div className="moviesCard__time">1ч 17м</div>
+                        <p className="moviesCard__title">{props.card.nameRU}</p>
+                        <div className="moviesCard__time">{props.card.duration}</div>
                     </div>
                 </div>
             :      
@@ -41,10 +41,10 @@ function MoviesCard(props) {
                         </button>
                         : <button className='moviesCard_save' onClick={likeMovies} type='button'>Сохранить</button>
                     }
-                    <img className="moviesCard__video" src={video} alt='картинка видео' />
+                    <img className="moviesCard__video" src={'https://api.nomoreparties.co' + props.card.image.url} alt='картинка видео' />
                     <div className="moviesCard__description">
-                        <p className="moviesCard__title">Бег это жизнь</p>
-                        <div className="moviesCard__time">1ч 17м</div>
+                        <p className="moviesCard__title">{props.card.nameRU}</p>
+                        <div className="moviesCard__time">{props.card.duration}</div>
                     </div>
                 </div>
             }
