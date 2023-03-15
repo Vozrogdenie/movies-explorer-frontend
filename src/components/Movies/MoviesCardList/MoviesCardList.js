@@ -2,21 +2,27 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import Footer from "../../Footer/Footer";
 import React, { useEffect, useState } from "react";
 import MoviesApi from '../../../utils/API';
-
-
-function MoviesCardList() {
-    const [movies, setMovies] = useState([]);
+import api from "../../../utils/API";
+import { useSearchParams } from "react-router-dom";
+function MoviesCardList(props) {
+    const [cards, setCards] = useState([]);
+    const [value, setValue] = useState('');
     
     useEffect(() => {
         MoviesApi.getApiCards().then(data => {
-            setMovies(data);
+            setCards(data);
         });
+    }, []);
+
+    const filtered = cards.filter(card => {
+        
+        return card.nameRU.toLowerCase().includes(value.toLowerCase)
     })
     return (
         <section>
             <div className="moviesCardList">
-                {movies.map(movie => {
-                    return <MoviesCard card={movie} key={movie.id}/>
+                {cards.map(card => {
+                    return <MoviesCard addLike={props.addLike}card={card} key={card.id}/>
                 })}
             </div>
             <div className="moviesCardList__movies">

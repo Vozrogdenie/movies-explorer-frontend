@@ -17,9 +17,9 @@ function Movies(props) {
         loggedIn={props.loggedIn}
     />
         
-        <SearchForm/>
+        <SearchForm handleSubmit={props.handleSubmit}/>
         <FilterCheckbox/>
-        <MoviesCardList/>
+        <MoviesCardList addLike={props.addLike}/>
         {/* <Preloader/> */}
         </div>
     )

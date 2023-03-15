@@ -30,11 +30,11 @@
     display: none;
 }
 
-.filterCheckbox__films:checked~.filterCheckbox__box {
+.filterCheckbox__films:checked ~ .filterCheckbox__box {
     background-color: var(--two_color);
 }
 
-.filterCheckbox__films:checked~.filterCheckbox__box::before {
+.filterCheckbox__films:checked ~ .filterCheckbox__box::before {
     background-color: var(--one_color);
     left: calc(var(--width) - var(--height) + var(--offset));
 }

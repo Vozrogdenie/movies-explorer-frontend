@@ -86,7 +86,7 @@ class Api {
     // };
 
     addLike(card) {
-        return fetch(`${this._url}/movies`, {
+        return fetch(`${this._url}/api/movies`, {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${this._getToken()}`,
@@ -96,7 +96,7 @@ class Api {
     }
       
     removeLike(card) {
-        return fetch(`${this._url}/movies`, {
+        return fetch(`${this._url}/api/movies`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${this._getToken()}`,

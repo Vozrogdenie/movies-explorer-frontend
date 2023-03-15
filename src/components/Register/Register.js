@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import headLogo from '../../images/logo.png'
 import api from '../../utils/auth';
+import { useNavigate } from 'react-router-dom';
+
 function Register(props) {
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-
+    const history = useNavigate()
     const onNameChange = (e) => {
         setName(e.target.value);
     };
@@ -18,7 +20,9 @@ function Register(props) {
 
     const onRegister = (e) => {
         e.preventDefault();
+        
         api.register(name, email, password);
+        history('/movies')
     };
 
     return(
