@@ -83,7 +83,11 @@
     cursor: pointer;
     border: none;
 }
-
+.register__register:disabled {
+    opacity: 70%;
+    color: #FFFFFF;
+    cursor: default;
+  }
 .register__title {
     color: #8B8B8B;
     font-size: 14px;
