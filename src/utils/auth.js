@@ -1,15 +1,14 @@
 const base_url = 'http://localhost:3001';
 
 class Auth {
-    _handleResponce(res) {
-        if (!res.ok) {
-            return Promise.reject(`${res.status}`);
-        }
-        return res.json();
-    }
+  _handleResponce(res) {
+      if (!res.ok) {
+          return Promise.reject(`${res.status}`);
+      }
+      return res.json();
+  }
 
-
-request = ({
+  request = ({
     url,
     method = 'POST',
     token,
@@ -45,8 +44,7 @@ request = ({
         token
     });
   };
-
-}
+};
 
 const auth = new Auth();
 export default auth;

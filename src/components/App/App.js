@@ -11,46 +11,16 @@ import api from '../../utils/MainApi';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../../contexts/UserContext';
-import { useSearchParams } from 'react-router-dom';
 
 function App() {
     const history = useNavigate();
     const [name, setName] = useState();
     const [email, setEmail] = useState();
     const [loggedIn, setloggedIn] = useState(false);
-    const [saveMovies, setSaveMovies] = useState([])
+    const [foundMovies, setFoundMovies] = useState([]);
+    const [isSearchPerformed, setIsSearchPerformed] = useState(false);
+    const [isFound, setIsFound] = useState(false);
 
-    function addLike(id, isLiked) {
-        api.changeLikeCardStatus().then(() => {
-          setSaveMovies(prev => [...prev, isLiked])
-        }).catch((err) => {
-          console.log(err)
-        });;
-      };
-
-    // const [checkbox, setCheckbox] = useState(false);
-    // const [cards, setCards] = useState([])
-    // function checkSmallMovies() {
-    //     if (checkbox = true && cards.duration <= 40){
-    //         return cards.duration<=40;
-    //     }else{ return cards}
-    // }
-    // const [ searchParams, setSearchParams] = useSearchParams();
-    // const [query, setQuery] = useState('')
-    // //   const cardQuery = searchParams.get('card') || '';
-
-    // const cardQuery = searchParams.get('card') || '';
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     const form = e.target.value;
-    //     const query = form.search.value;
-    //     setSearchParams({card: query})
-    // }
-    // const [value, setValue] = useState('');
-    // const filtered = movies.filter(movie => {
-    //     return movie.nameRU.toLowerCase().includes(value.toLowerCase)
-    // })
     useEffect(() => {
         authApi.checkToken(api._getToken())
             .then(res => { 
@@ -76,19 +46,32 @@ function App() {
         });
     };
 
+    const submitSearch = (moviesArray, value) => {
+        if (value.length) {
+            const foundMovies = moviesArray.filter(movie => movie.nameRU.toLowerCase().includes(value.toLowerCase()));
+            setFoundMovies(foundMovies);
+            setIsSearchPerformed(true);
+            setIsFound(foundMovies.length > 0 ? true : false);
+        } else {
+            setFoundMovies([]);
+            setIsSearchPerformed(false);
+            setIsFound(false);
+        };
+    };
+
     return (
         <UserContext.Provider value={{name: name, email: email}}>
             <Routes>
-                <Route path='/'  element={<Main loggedIn={loggedIn}/>}/>
-                <Route path='/movies' element={<Movies loggedIn={loggedIn} addLike={addLike}/>}/>
+                <Route path='/'  element={<Main />}/>
+                <Route path='/movies' element={<Movies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
                 <Route path='/profile' UserName={name} UserEmail={email} element={<Profile loggedIn={loggedIn}/>}/>
-                <Route path='/saved-movies' element={<SavedMovies loggedIn={loggedIn} />}/>
+                <Route path='/saved-movies' element={<SavedMovies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
                 <Route path='/signup' element={<Register/>}/>
                 <Route path='/signin' element={<Login onLogin={onLogin}/>}/>
                 <Route path='/*' element={<PageNotFound/>}/>
             </Routes>
         </UserContext.Provider>
-    )
-}
+    );
+};
 
 export default App;

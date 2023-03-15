@@ -4,6 +4,7 @@ const api_headers = {
         'Content-Type': 'application/json'
     }
 };
+const media_url = 'https://api.nomoreparties.co';
 
 class Api {
     constructor(api_headers) {
@@ -22,8 +23,20 @@ class Api {
         return res.json();
     };
 
-    async getApiCards() {
-        return fetch(`https://api.nomoreparties.co/beatfilm-movies`).then(this._handleResponce);
+    async getMoviesCards() {
+        return fetch(`${media_url}/beatfilm-movies`, {
+            headers: this._headers
+        }).then(this._handleResponce);
+    };
+
+    async getSavedMoviesCards() {
+        return fetch(`${this._url}/api/movies`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${this._getToken()}`,
+                ...api_headers.headers
+            }
+        }).then(this._handleResponce);
     };
 
     async getApiUser() {
@@ -49,24 +62,35 @@ class Api {
     //     }).then(this._handleResponce);
     // };
 
-    createCards(movies) {
+    saveMovie(movie) {
+        const movieToSave = {
+            country: movie.country,
+            director: movie.director,
+            duration: movie.duration,
+            year: movie.year,
+            description: movie.description,
+            image: media_url+movie.image.url,
+            trailerLink: movie.trailerLink,
+            trailer: movie.trailerLink,
+            nameRU: movie.nameRU,
+            nameEN: movie.nameEN,
+            thumbnail: media_url+movie.image.url,
+            movieId: movie.id
+        };
+        console.log(movieToSave)
+
         return fetch(`${this._url}/api/movies`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${this._getToken()}`,
                 ...api_headers.headers
             },
-            body: JSON.stringify({
-                name: movies.name,
-                link: movies.link,
-                trailerLink: movies.trailerLink,
-                duration: movies.duration,
-            })
+            body: JSON.stringify(movieToSave)
         }).then(this._handleResponce);
     };
 
-    deleteCard(id) {
-        return fetch(`${this._url}/movies/${id}`, {
+    removeMovieFromSaved(movie_id) {
+        return fetch(`${this._url}/api/movies/${movie_id}`, {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${this._getToken()}`,
@@ -75,35 +99,25 @@ class Api {
         }).then(this._handleResponce);
     };
 
-    // addLike(id) {
-    //     return fetch(`${this._url}/movies/${id}/likes`, {
+    // addLike(card) {
+    //     return fetch(`${this._url}/api/movies`, {
     //         method: 'PUT',
     //         headers: {
     //             Authorization: `Bearer ${this._getToken()}`,
     //             ...api_headers.headers
     //         }
     //     }).then(this._handleResponce);
-    // };
-
-    addLike(card) {
-        return fetch(`${this._url}/api/movies`, {
-            method: 'PUT',
-            headers: {
-                Authorization: `Bearer ${this._getToken()}`,
-                ...api_headers.headers
-            }
-        }).then(this._handleResponce);
-    }
+    // }
       
-    removeLike(card) {
-        return fetch(`${this._url}/api/movies`, {
-            method: 'DELETE',
-            headers: {
-                Authorization: `Bearer ${this._getToken()}`,
-                ...api_headers.headers
-            }
-        }).then(this._handleResponce);
-    };
+    // removeLike(card) {
+    //     return fetch(`${this._url}/api/movies`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             Authorization: `Bearer ${this._getToken()}`,
+    //             ...api_headers.headers
+    //         }
+    //     }).then(this._handleResponce);
+    // };
 
     // changeAvatar(Avatar) {
     //     return fetch(`${this._url}/users/me/avatar`, {

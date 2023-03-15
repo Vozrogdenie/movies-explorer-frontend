@@ -1,17 +1,20 @@
 import icon from '../../../images/icon.png'
-import { useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
-import api from '../../../utils/API';
-import { useEffect } from 'react';
 
-function SearchForm() {
+function SearchForm(props) {
   const [value, setValue] = useState('');
+  const submit = (e) => {
+    e.preventDefault();
+    props.submitSearch(props.movies, value);
+  };
 
     return (
         <section className="searchForm">
           <div href="/" className='seachForm__circle'><img src={icon} className='seachForm__loupe' alt="Логотип"/></div>  
-         <form> <input className='seachForm__input' onChange={(e)=>setValue(e.target.value)} name='search' placeholder='Фильм'></input></form>
-          <button   className='searchForm__search'>Найти</button>
+          <form>
+            <input className='seachForm__input' onChange={(e) => setValue(e.target.value)} name='search' placeholder='Фильм'></input>
+          </form>
+          <button onClick={e => submit(e)} className='searchForm__search'>Найти</button>
         </section>
     )
 }

@@ -1,54 +1,38 @@
-import trach from '../../../images/trach.png'
-import heart from '../../../images/like.png'
-import video from '../../../images/video.png'
-import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import api from '../../../utils/API'
+import trach from '../../../images/trach.png';
+import heart from '../../../images/like.png';
+import { timeParseRU } from '../../../utils/timeParser';
+
 function MoviesCard(props) {
-    const [save, setSave] = useState(false);
-    const [saveMovies, setSaveMovies] = useState([]);
-    const location = useLocation();
-    // const addSaveMovies = (product) => {
-    //     setSaveMovies(prev => [...prev, product])
-    //     console.log(setSaveMovies)
-    // }
-
-
-    // const likeMovies = () => {
-    //     setSave(({ save }) => {
-    //         return { save }
-    //     })
-    // }
 
     return (
 
         <>
-            {/* { window.location.pathname === '/saved-movies' ?
+            { window.location.pathname === '/saved-movies' ?
                 <div className="moviesCard">
-                    <button className="moviesCard__trachMovies" type="button" aria-label="Удалить фильм" >
+                    <button className="moviesCard__trachMovies" onClick={() => props.deleteSavedMovie(props.card.movieId)} type="button" aria-label="Удалить фильм" >
                         <img className="moviesCard__trach" src={trach} alt="Удалить" />
                     </button>
-                    <img className="moviesCard__video" src={'https://api.nomoreparties.co' + props.card.image.url} alt='картинка видео' />
+                    <img className="moviesCard__video" src={props.card.image} alt='картинка видео' />
                     <div className="moviesCard__description">
                         <p className="moviesCard__title">{props.card.nameRU}</p>
-                        <div className="moviesCard__time">{props.card.duration}</div>
+                        <div className="moviesCard__time">{timeParseRU(props.card.duration)}</div>
                     </div>
                 </div>
-            :       */}
+            :      
             <div className="moviesCard">
-                    {props.addLike ?
-                        <button className="moviesCard__likeMovies" type="button" aria-label="Сохранить фильм">
+                    {props.isSaved ?
+                        <button className="moviesCard__likeMovies" onClick={() => props.deleteSavedMovie(props.card.id)} type="button" aria-label="Сохранить фильм">
                             <img className='moviesCard__like' src={heart} alt="кнопка сердешки" />
                         </button>
-                        : <button className='moviesCard_save' onClick={props.addLike} type='button'>Сохранить</button>
+                        : <button className='moviesCard_save' onClick={() => props.saveMovie(props.card)} type='button'>Сохранить</button>
                     }
                     <img className="moviesCard__video" src={'https://api.nomoreparties.co' + props.card.image.url} alt='картинка видео' />
                     <div className="moviesCard__description">
                         <p className="moviesCard__title">{props.card.nameRU}</p>
-                        <div className="moviesCard__time">{props.card.duration}</div>
+                        <div className="moviesCard__time">{timeParseRU(props.card.duration)}</div>
                     </div>
                 </div>
-            {/* //} */}
+            }
 
         </>
 

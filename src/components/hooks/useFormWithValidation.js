@@ -16,7 +16,7 @@ function useFormWithValidation() {
 
   const resetFrom = useCallback(
     (newValues = {}, newErrors = {}, newIsValid = false) => {
-      setValues(newValues);
+      setValues({...values, newValues});
       setErrors(newErrors);
       setIsValid(newIsValid);
     },
