@@ -31,9 +31,9 @@
 }
 @media all and (max-width: 12450px) {
     
-    .moviesCardList :nth-child(1n+13) {
+    /* .moviesCardList :nth-child(1n+13) {
         display: none;
-    }
+    } */
 }
 @media all and (max-width: 1171px) {
     .moviesCardList {
@@ -44,9 +44,9 @@
         margin-bottom: 62px;
         padding: 0 30px;
     }
-    .moviesCardListt :nth-child(1n+9) {
+    /* .moviesCardList :nth-child(1n+9) {
         display: none;
-    }
+    } */
 }
 
 @media all and (max-width: 766px) {

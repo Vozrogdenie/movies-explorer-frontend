@@ -1,10 +1,9 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Footer from "../../Footer/Footer";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 function MoviesCardList(props) {
-
+    console.log(props.hasMore)
     return (
         <section>
             
@@ -28,16 +27,12 @@ function MoviesCardList(props) {
                             deleteSavedMovie={props.deleteSavedMovie}
                         />
                     }) 
-                : <p className="savedMovies__title" >Ничего не найдено</p>}
+                : <p className="savedMovies__title" >Ничего не найдено</p>
+                }
             </div>
-            {props.add ? props.movies.map((movie) => {
-                        return <MoviesCard
-                            card={movie} 
-                            key={movie.id}
-                             />}) : [] }
-            <div className="moviesCardList__movies">
-                <button  onClick={props.more} className="moviesCardList__more">Ещё</button>
-            </div> 
+            {props.hasMore ? <div className="moviesCardList__movies">
+                <button  onClick={props.loadMore} className="moviesCardList__more">Ещё</button>
+            </div> :[]}
             <Footer />
         </section>
     )
