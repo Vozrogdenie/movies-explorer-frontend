@@ -39,13 +39,13 @@ class Api {
         }).then(this._handleResponce);
     };
 
-    updateProfileInfo(name, email) {
+    async updateProfile(email, name ) {
         return fetch(`${this._url}/api/users/me`, {
-          method: 'PATCH',
-          headers: this._headers,
-          body: JSON.stringify({ name, email }),
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({ email, name  }),
         }).then(this._handleResponse);
-      }
+    }
     async getApiUser() {
         return fetch(`${this._url}/api/users/me`, {
             headers: {

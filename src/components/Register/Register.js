@@ -19,7 +19,7 @@ function Register(props) {
         e.preventDefault();
         if (isValid) {
             api.register(name, email, password).then(() => {
-                history('/signin');
+                history('/movies');
             }).catch(err => {
                 console.log(err);
             });
