@@ -1,9 +1,9 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Footer from "../../Footer/Footer";
-import React, { useState } from "react";
+import React from "react";
 
 function MoviesCardList(props) {
-    console.log(props.hasMore)
+
     return (
         <section>
             

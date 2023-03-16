@@ -1,13 +1,16 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Header from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 import api from "../../utils/MainApi";
 import useFormWithValidation from "../hooks/useFormWithValidation";
-function Profile({ loggedIn }) {
+
+function Profile(props) {
     const history = useNavigate();
-    const [isDisabled, setIsDisabled] = useState(true);
-    
+    const context = useContext(UserContext);
+
+    const [hasChanged, setHasChanged] = useState(false);
+
     const onLogoff = (e) => {
         e.preventDefault();
         localStorage.removeItem('jwt');
@@ -15,34 +18,21 @@ function Profile({ loggedIn }) {
     };
 
     const {
-        values, 
-        errors, 
-        isValid, 
+        values,
+        errors,
+        isValid,
         handleChange,
-      } = useFormWithValidation();
+    } = useFormWithValidation();
     
-      const { email, name } = values;
+    const { email, name } = values;
 
-      const updateProfile = (e) => {
-        e.preventDefault();
-        if (isValid) {
-            api.updateProfile(email, name).then(() => {
-            }).catch(err => {
-                console.log(err);
-            });
-        } else {
-            console.log(errors);
-        };
-    };
-
-    const context = useContext(UserContext);
     return (
         <>
             <Header
                 link={'Фильмы'}
                 linkTwo={'Сохранненые фильмы'}
                 accaunt={'Аккаунт'}
-                loggedIn={loggedIn}
+                loggedIn={props.loggedIn}
             />
             <section className="profile" id="#profile">
                 <h3 className="profile__helloName">{`Привет ${context.name}!`}</h3>
@@ -58,7 +48,7 @@ function Profile({ loggedIn }) {
                         <span className="register__error">Это поле должно содержать E-Mail в формате example@site.com</span>
                     </div>
                 </form>
-                <button className="profile__edit"  onClick={e => updateProfile(e)} disabled={!isValid}  type="button">Редактировать</button>
+                <button onClick={() => props.onProfileChange(name, email, isValid)} disabled={!isValid && !hasChanged} className="profile__edit" type="button">Редактировать</button>
                 <button onClick={onLogoff} className="profile__exit" type="button"><a href="/signin" className="profile__exit"> Выйти из аккаунта</a></button>
             </section>
         </>

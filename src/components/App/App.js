@@ -33,6 +33,13 @@ function App() {
             });
     }, []);
 
+    const onProfileChange = (userName, userEmail, isValid) => {
+        if (isValid) api.updateProfile(userEmail ? userEmail : email, userName ? userName : name).then(data => {
+            setName(userName ? userName : name);
+            setEmail(userEmail ? userEmail : email);
+        }).catch(err => console.log(err));
+    };
+
     const onLogin = (e, email, password) => {
         e.preventDefault();
         authApi.authorization(email, password).then(data => {
@@ -64,7 +71,7 @@ function App() {
             <Routes>
                 <Route path='/'  element={<Main />}/>
                 <Route path='/movies' element={<Movies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
-                <Route path='/profile' UserName={name} UserEmail={email} element={<Profile loggedIn={loggedIn}/>}/>
+                <Route path='/profile' element={<Profile loggedIn={loggedIn} onProfileChange={onProfileChange}/>}/>
                 <Route path='/saved-movies' element={<SavedMovies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
                 <Route path='/signup' element={<Register/>}/>
                 <Route path='/signin' element={<Login onLogin={onLogin}/>}/>

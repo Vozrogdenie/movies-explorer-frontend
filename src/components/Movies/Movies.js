@@ -12,13 +12,15 @@ function Movies(props) {
     const [moviesToShow, setMoviesToShow] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [cardCounter, setCardCounter] = useState(0);
+    const [isShortOnly, setIsShortOnly] = useState(false);
+    const [hasMore, setHasMore] = useState(false);
 
     useEffect(() => {
         setIsLoading(true)
         api.getMoviesCards().then(data => {
             setMovies(data);
             setCardCounter(getInitCounter(window.innerWidth));
-            getMoviesToShow(props.isSearchPerformed, props.isFound, data);
+            getMoviesToShow(props.isSearchPerformed, props.isFound, isShortOnly, data);
         }).finally(() => {setIsLoading(false)});
         api.getSavedMoviesCards().then(resp => {
             setSavedMovies(resp.data);
@@ -26,7 +28,7 @@ function Movies(props) {
     }, []);
 
     useEffect(() => {
-        getMoviesToShow(props.isSearchPerformed, props.isFound)
+        getMoviesToShow(props.isSearchPerformed, props.isFound, isShortOnly)
     }, [props.foundMovies]);
 
     const saveMovie = (movie) => {
@@ -49,12 +51,31 @@ function Movies(props) {
     
     const loadMore = () => {
         const width = window.innerWidth;
+        let initLength = 0;
+        let finalLength = 0;
         setCardCounter(getCounter(width));
         if (props.isSearchPerformed && props.isFound) {
-            setMoviesToShow(props.foundMovies.slice(0, getCounter(width)));
+            if (isShortOnly) {
+                setMoviesToShow(props.foundMovies.filter(movie => movie.duration <= 40).slice(0, getCounter(width)));
+                finalLength = props.foundMovies.filter(movie => movie.duration <= 40).slice(0, getCounter(width)).length;
+                initLength = props.foundMovies.filter(movie => movie.duration <= 40).length;
+            } else {
+                setMoviesToShow(props.foundMovies.slice(0, getCounter(width)));
+                finalLength = props.foundMovies.slice(0, getCounter(width)).length;
+                initLength = props.foundMovies.length;
+            };
         } else {
-            setMoviesToShow(movies.slice(0, getCounter(width)));
+            if (isShortOnly) {
+                setMoviesToShow(movies.filter(movie => movie.duration <= 40).slice(0, getCounter(width)));
+                finalLength = movies.filter(movie => movie.duration <= 40).slice(0, getCounter(width)).length;
+                initLength = movies.filter(movie => movie.duration <= 40).length;
+            } else {
+                setMoviesToShow(movies.slice(0, getCounter(width)));
+                finalLength = movies.slice(0, getCounter(width)).length;
+                initLength = movies.length;
+            };            
         };
+        setHasMore(finalLength < initLength)
     };
 
     const getInitCounter = (width) => {
@@ -75,15 +96,43 @@ function Movies(props) {
         };
     };
 
-    const getMoviesToShow = (isSearchPerformed, isFound, movies) => {
+    const getMoviesToShow = (isSearchPerformed, isFound, isShortOnly, newMovies) => {
         let arr = [];
+        let initLength = 0;
         if (isSearchPerformed && isFound) {
-            arr = props.foundMovies.slice(0, getInitCounter(window.innerWidth));
-        } else if (movies) {
-            arr = movies.slice(0, getInitCounter(window.innerWidth));
+            if (isShortOnly) {
+                arr = props.foundMovies.filter(movie => movie.duration <= 40).slice(0, getInitCounter(window.innerWidth));
+                initLength = props.foundMovies.filter(movie => movie.duration <= 40).length;
+            } else {
+                arr = props.foundMovies.slice(0, getInitCounter(window.innerWidth));
+                initLength = props.foundMovies.length;
+            };
+        } else if (newMovies) {
+            if (isShortOnly) { 
+                arr = newMovies.filter(movie => movie.duration <= 40).slice(0, getInitCounter(window.innerWidth));
+                initLength = newMovies.filter(movie => movie.duration <= 40).length;
+            } else {
+                arr = newMovies.slice(0, getInitCounter(window.innerWidth));
+                initLength = newMovies.length;
+            };
+        } else {
+            if (isShortOnly) { 
+                arr = movies.filter(movie => movie.duration <= 40).slice(0, getInitCounter(window.innerWidth));
+                initLength = movies.filter(movie => movie.duration <= 40).length;
+            } else {
+                arr = movies.slice(0, getInitCounter(window.innerWidth));
+                initLength = movies.length;
+            };
         };
+    
+        setHasMore(arr.length < initLength);
         setCardCounter(getInitCounter(window.innerWidth));
         setMoviesToShow(arr);
+    }
+
+    const onShortToggled = (isShort) => {
+        getMoviesToShow(props.isSearchPerformed, props.isFound, !isShort);
+        setIsShortOnly(!isShort)
     }
 
     return(
@@ -96,7 +145,7 @@ function Movies(props) {
     />
         
         <SearchForm submitSearch={props.submitSearch} movies={movies}/>
-        <FilterCheckbox/>
+        <FilterCheckbox isShortOnly={isShortOnly} onShortToggled={onShortToggled}/>
         <Preloader isLoading={isLoading}/>
         <MoviesCardList
             movies={moviesToShow}
@@ -106,7 +155,7 @@ function Movies(props) {
             saveMovie={saveMovie}
             deleteSavedMovie={deleteSavedMovie}
             loadMore={loadMore}
-            hasMore={(props.foundMovies.length ? props.foundMovies : moviesToShow).slice(0, cardCounter).length < (props.foundMovies.length ? props.foundMovies : movies).length}
+            hasMore={hasMore}
         />
         </div>
     )
