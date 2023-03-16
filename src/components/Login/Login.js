@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import headLogo from '../../images/logo.png';
-import api from '../../utils/auth';
-import { useNavigate } from 'react-router-dom';
 
 function Login(props) {
-    const history = useNavigate();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
@@ -14,18 +11,6 @@ function Login(props) {
     const onPasswordChange = (e) => {
         setPassword(e.target.value);
     };
-
-    // const onLogin = (e) => {
-    //     e.preventDefault();
-    //     api.authorization(email, password).then(data => {
-    //         if (data.token) {
-    //             history('/movies');
-    //             localStorage.setItem('jwt', data.token);
-    //         } else {
-    //             history('/signin');
-    //         }
-    //     });
-    // };
 
     return(
         <div className="login register">

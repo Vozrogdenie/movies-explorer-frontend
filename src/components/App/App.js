@@ -53,6 +53,19 @@ function App() {
         });
     };
 
+    const onRegister = (e, userName, userEmail, userPassword, isValid) => {
+        e.preventDefault();
+        if (isValid) {
+            authApi.register(userName, userEmail, userPassword).then(resp => {
+                history('/movies');
+                localStorage.setItem("jwt", resp.data.token);
+                setloggedIn(true);
+            }).catch(err => {
+                console.log(err);
+            });
+        };
+    };
+
     const submitSearch = (moviesArray, value) => {
         if (value.length) {
             const foundMovies = moviesArray.filter(movie => movie.nameRU.toLowerCase().includes(value.toLowerCase()));
@@ -73,7 +86,7 @@ function App() {
                 <Route path='/movies' element={<Movies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
                 <Route path='/profile' element={<Profile loggedIn={loggedIn} onProfileChange={onProfileChange}/>}/>
                 <Route path='/saved-movies' element={<SavedMovies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
-                <Route path='/signup' element={<Register/>}/>
+                <Route path='/signup' element={<Register onRegister={onRegister}/>}/>
                 <Route path='/signin' element={<Login onLogin={onLogin}/>}/>
                 <Route path='/*' element={<PageNotFound/>}/>
             </Routes>

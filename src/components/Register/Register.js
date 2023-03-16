@@ -1,32 +1,17 @@
-import { useEffect, useState } from 'react';
 import headLogo from '../../images/logo.png'
-import api from '../../utils/auth';
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import useFormWithValidation from '../hooks/useFormWithValidation';
 function Register(props) {
-    const history = useNavigate();
+
     const {
         values, 
         errors, 
         isValid, 
         handleChange,
-      } = useFormWithValidation();
+    } = useFormWithValidation();
     
-      const { name, email, password } = values;
+    const { name, email, password } = values;
 
-      const onRegister = (e) => {
-        e.preventDefault();
-        if (isValid) {
-            api.register(name, email, password).then(() => {
-                history('/movies');
-            }).catch(err => {
-                console.log(err);
-            });
-        } else {
-            console.log(errors);
-        };
-    };
 
     return(
         <div className="register" id='register'>
@@ -44,7 +29,7 @@ function Register(props) {
                 <input onChange={handleChange} value={password} required className="register__input" type="password" name="password"  minLength="4" placeholder="Пароль" maxLength="20" ></input>
                 <span className="register__error">Поле должно быть заполнено. Минимум 4 символа и максимум 20.</span>
             </form>
-            <button onClick={e => onRegister(e)} disabled={!isValid} className="register__register">Зарегистрироваться</button>
+            <button onClick={e => props.onRegister(e, name, email, password, isValid)} disabled={!isValid} className="register__register">Зарегистрироваться</button>
             <p className="register__title">Уже зарегистрированы?&nbsp; <a href="/signin"> Войти</a></p>
         </div>
     )
