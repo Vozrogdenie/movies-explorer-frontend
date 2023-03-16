@@ -2,11 +2,11 @@ import { useState, useContext } from "react";
 import Header from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-
-function Profile({ loggedIn }) {
+import api from "../../utils/MainApi";
+function Profile({ loggedIn, updateProfile }) {
     const history = useNavigate();
     const [isDisabled, setIsDisabled] = useState(true);
-
+    
     const onLogoff = (e) => {
         e.preventDefault();
         localStorage.removeItem('jwt');
@@ -36,7 +36,7 @@ function Profile({ loggedIn }) {
                         <input className="profile__email" placeholder="Email" disabled={isDisabled}  defaultValue={context.email}></input>
                     </div>
                 </form>
-                <button className="profile__edit" onClick={() => change()}  type="button">Редактировать</button>
+                <button className="profile__edit" onClick={() => change()} onSubmit={updateProfile}  type="button">Редактировать</button>
                 <button onClick={onLogoff} className="profile__exit" type="button"><a href="/signin" className="profile__exit"> Выйти из аккаунта</a></button>
 
             </section>

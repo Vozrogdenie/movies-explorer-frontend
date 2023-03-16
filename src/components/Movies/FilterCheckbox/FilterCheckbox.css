@@ -27,14 +27,22 @@
 }
 
 .filterCheckbox__films {
-    display: none;
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+    z-index: 1;
+    margin-right: 150px;
+    width: 350px;
+    height: 20px;
 }
 
 .filterCheckbox__films:checked ~ .filterCheckbox__box {
+    display: block;
     background-color: var(--two_color);
 }
 
 .filterCheckbox__films:checked ~ .filterCheckbox__box::before {
+    display: block;
     background-color: var(--one_color);
     left: calc(var(--width) - var(--height) + var(--offset));
 }

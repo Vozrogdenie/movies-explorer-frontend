@@ -1,11 +1,13 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Footer from "../../Footer/Footer";
 import React from "react";
+import { useState } from "react";
 
 function MoviesCardList(props) {
 
     return (
         <section>
+            
             <div className="moviesCardList">
                 { !props.isFound && !props.isSearchPerformed ? props.movies.map((movie) => {
                         return <MoviesCard
@@ -26,11 +28,16 @@ function MoviesCardList(props) {
                             deleteSavedMovie={props.deleteSavedMovie}
                         />
                     }) 
-                : <p>Ничего не найдено</p>}
+                : <p className="savedMovies__title" >Ничего не найдено</p>}
             </div>
+            {props.add ? props.movies.map((movie) => {
+                        return <MoviesCard
+                            card={movie} 
+                            key={movie.id}
+                             />}) : [] }
             <div className="moviesCardList__movies">
-                <button className="moviesCardList__more">Ещё</button>
-            </div>
+                <button  onClick={props.more} className="moviesCardList__more">Ещё</button>
+            </div> 
             <Footer />
         </section>
     )

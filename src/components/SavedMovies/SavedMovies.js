@@ -46,8 +46,8 @@ function SavedMovies(props) {
                     : props.isFound && props.isSearchPerformed ? props.foundMovies.map(movie => {
                         return <MoviesCard key={movie.movieId} deleteSavedMovie={deleteSavedMovie} card={movie}/>
                     })
-                    : <p>Ничего не найдено</p>
-                : <p>Нет сохранённых фильмов</p>}
+                    : <p className='savedMovies__title'>Ничего не найдено</p>
+                : <p className='savedMovies__title'>Нет сохранённых фильмов</p>}
             </div>
             <Footer/>
         </>

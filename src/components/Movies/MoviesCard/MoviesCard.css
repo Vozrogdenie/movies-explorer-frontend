@@ -6,6 +6,9 @@
     cursor: pointer;
 }
 
+.moviesCard__trailer{
+    padding: 0;
+}
 .moviesCard__description {
     display: inherit;
     align-items: center;
@@ -34,6 +37,13 @@
     line-height: 10px;
     font-weight: 400;
     color: #8B8B8B;
+    background-color: #2F2F2F;
+    width: 53px;
+    height: 18px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .moviesCard__trachMovies {
@@ -110,10 +120,8 @@
     }
 
     .moviesCard__description {
-        margin-top: 25px;
-    }
-    .moviesCard__description {
         margin-top: 16px;
+        margin-bottom: 36px;
     }
 
     .moviesCard__title {

@@ -32,7 +32,17 @@ function App() {
                 setloggedIn(false);
             });
     }, []);
-
+    const updateProfile = (res) => {
+        api
+          .updateProfileInfo(res.name, res.email)
+          .then((res) => {
+            setName(res.name);
+                setEmail(res.email);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
     const onLogin = (e, email, password) => {
         e.preventDefault();
         authApi.authorization(email, password).then(data => {
@@ -45,7 +55,18 @@ function App() {
             }
         });
     };
-
+    // const submitCheck = (moviesArray, value) => {
+    //     if (value.length) {
+    //         const foundMovies = moviesArray.filter(movie => movie.nameRU.toLowerCase().includes(value.toLowerCase()));
+    //         setFoundMovies(foundMovies);
+    //         setIsSearchPerformed(true);
+    //         setIsFound(foundMovies.length > 0 ? true : false);
+    //     } else {
+    //         setFoundMovies([]);
+    //         setIsSearchPerformed(false);
+    //         setIsFound(false);
+    //     };
+    // };
     const submitSearch = (moviesArray, value) => {
         if (value.length) {
             const foundMovies = moviesArray.filter(movie => movie.nameRU.toLowerCase().includes(value.toLowerCase()));
@@ -64,7 +85,7 @@ function App() {
             <Routes>
                 <Route path='/'  element={<Main />}/>
                 <Route path='/movies' element={<Movies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
-                <Route path='/profile' UserName={name} UserEmail={email} element={<Profile loggedIn={loggedIn}/>}/>
+                <Route path='/profile' UserName={name} UserEmail={email} element={<Profile updateProfile={updateProfile} loggedIn={loggedIn}/>}/>
                 <Route path='/saved-movies' element={<SavedMovies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
                 <Route path='/signup' element={<Register/>}/>
                 <Route path='/signin' element={<Login onLogin={onLogin}/>}/>

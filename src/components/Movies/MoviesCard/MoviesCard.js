@@ -12,7 +12,8 @@ function MoviesCard(props) {
                     <button className="moviesCard__trachMovies" onClick={() => props.deleteSavedMovie(props.card.movieId)} type="button" aria-label="Удалить фильм" >
                         <img className="moviesCard__trach" src={trach} alt="Удалить" />
                     </button>
-                    <img className="moviesCard__video" src={props.card.image} alt='картинка видео' />
+                    <a className="moviesCard__trailer" href={props.card.trailerLink} target="_blank" rel="noreferrer"><img className="moviesCard__video" src={props.card.image} alt='картинка видео' ></img></a>
+                    
                     <div className="moviesCard__description">
                         <p className="moviesCard__title">{props.card.nameRU}</p>
                         <div className="moviesCard__time">{timeParseRU(props.card.duration)}</div>
@@ -26,7 +27,8 @@ function MoviesCard(props) {
                         </button>
                         : <button className='moviesCard_save' onClick={() => props.saveMovie(props.card)} type='button'>Сохранить</button>
                     }
-                    <img className="moviesCard__video" src={'https://api.nomoreparties.co' + props.card.image.url} alt='картинка видео' />
+                    <a className="moviesCard__trailer" href={props.card.trailerLink} target="_blank" rel="noreferrer"><img className="moviesCard__video" src={'https://api.nomoreparties.co' + props.card.image.url} alt='картинка видео' /></a>
+                    
                     <div className="moviesCard__description">
                         <p className="moviesCard__title">{props.card.nameRU}</p>
                         <div className="moviesCard__time">{timeParseRU(props.card.duration)}</div>
