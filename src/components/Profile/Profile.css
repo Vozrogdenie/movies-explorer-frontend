@@ -77,7 +77,12 @@
     cursor: pointer;
     margin: 220px 0 16px;
 }
-.profile__edit:hover {
+.profile__edit:disabled  {
+    opacity: 70%;
+    color: #FFFFFF;
+    cursor: default;
+  }
+.profile__edit:not([disabled]):hover {
     color: #3DDC84;
     transition: all .3s linear;
     -webkit-transition: all .3s linear;
