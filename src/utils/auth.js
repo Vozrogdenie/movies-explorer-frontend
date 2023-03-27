@@ -1,4 +1,4 @@
-const base_url = 'http://localhost:3001';
+const base_url = 'https://api.renaissance.films.nomoredomains.club';
 
 class Auth {
   _handleResponce(res) {
@@ -27,13 +27,13 @@ class Auth {
 
   register = (name, email, password) => {
     return this.request({
-        url:'/signup',
+        url:'/api/signup',
         data: {name, email, password}
     })
   };
   authorization = ( email, password) => {
     return this.request({
-        url:'/signin',
+        url:'/api/signin',
         data: {email, password}
     })
   };
