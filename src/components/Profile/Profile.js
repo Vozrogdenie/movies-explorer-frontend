@@ -2,14 +2,17 @@ import { useState, useContext, useEffect } from "react";
 import Header from "../Header/Header";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
-import api from "../../utils/MainApi";
-import useFormWithValidation from "../hooks/useFormWithValidation";
 
 function Profile(props) {
     const history = useNavigate();
     const context = useContext(UserContext);
 
-    const [hasChanged, setHasChanged] = useState(false);
+    const [saveError, setSaveError] = useState();
+    const [errors, setErrors] = useState({name: '', email: ''});
+    const [isValid, setIsValid] = useState(false);
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [submitDisabled, setSubmitDisabled] = useState(true);
+    const [newUser, setNewUser] = useState({name: context.name, email: context.email});
 
     const onLogoff = (e) => {
         e.preventDefault();
@@ -17,15 +20,31 @@ function Profile(props) {
         history('/signin');
     };
 
-    const {
-        values,
-        errors,
-        isValid,
-        handleChange,
-    } = useFormWithValidation();
-    
-    const { email, name } = values;
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setNewUser(user => ({
+            ...user,
+            [name]: value
+        }));
+        setErrors((errors) => ({
+            ...errors,
+            [name]: e.target.validationMessage
+        }));
+        setIsValid(e.target.closest('form').checkValidity());
+    };
 
+    useEffect(() => {
+        setSubmitDisabled(context.name === newUser.name && context.email === newUser.email)
+    }, [newUser.name, newUser.email, context.name, context.email]);
+
+    
+    const onSubmit = (e) => {
+        e.preventDefault();
+        setFormSubmitted(true);
+        props.onProfileChange(newUser.name, newUser.email, isValid, setSaveError)
+    }
+    
     return (
         <>
             <Header
@@ -48,7 +67,8 @@ function Profile(props) {
                         <span className="register__error">Это поле должно содержать E-Mail в формате example@site.com</span>
                     </div>
                 </form>
-                <button onClick={() => props.onProfileChange(name, email, isValid)} disabled={!isValid && !hasChanged} className="profile__edit" type="button">Редактировать</button>
+                {formSubmitted ? <span className={!Object.keys(errors).length || !saveError ? "register__ok" : "refister__err"}>{!Object.keys(errors).length || !saveError ? "Данные успешно обновлены." : "Произошла ошибка. Попробуйте позже."}</span>:[]}
+                <button onClick={(e) => onSubmit(e)} disabled={!isValid || submitDisabled} className="profile__edit" type="button">Редактировать</button>
                 <button onClick={onLogoff} className="profile__exit" type="button"><a href="/signin" className="profile__exit"> Выйти из аккаунта</a></button>
             </section>
         </>

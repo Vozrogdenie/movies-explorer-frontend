@@ -12,6 +12,9 @@ function Register(props) {
     
     const { name, email, password } = values;
 
+    const onSubmit = (e, name, email, password, isValid) => {
+        if (!props.loading) props.onRegister(e, name, email, password, isValid);
+    };
 
     return(
         <div className="register" id='register'>
@@ -29,7 +32,7 @@ function Register(props) {
                 <input onChange={handleChange} value={password} required className="register__input" type="password" name="password"  minLength="4" placeholder="Пароль" maxLength="20" ></input>
                 <span className="register__error">Поле должно быть заполнено. Минимум 4 символа и максимум 20.</span>
             </form>
-            <button onClick={e => props.onRegister(e, name, email, password, isValid)} disabled={!isValid} className="register__register">Зарегистрироваться</button>
+            <button onClick={e => onSubmit(e, name, email, password, isValid)} disabled={!isValid} className="register__register">Зарегистрироваться</button>
             <p className="register__title">Уже зарегистрированы?&nbsp; <a href="/signin"> Войти</a></p>
         </div>
     )

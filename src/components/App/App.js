@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Router } from 'react-router-dom';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import Profile from '../Profile/Profile';
@@ -11,6 +11,7 @@ import api from '../../utils/MainApi';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserContext from '../../contexts/UserContext';
+import ProtectedRoutes from '../ProtectedRoutes/ProtectedRoutes';
 
 function App() {
     const history = useNavigate();
@@ -20,6 +21,7 @@ function App() {
     const [foundMovies, setFoundMovies] = useState([]);
     const [isSearchPerformed, setIsSearchPerformed] = useState(false);
     const [isFound, setIsFound] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         authApi.checkToken(api._getToken())
@@ -33,16 +35,21 @@ function App() {
             });
     }, []);
 
-    const onProfileChange = (userName, userEmail, isValid) => {
+    const onProfileChange = (userName, userEmail, isValid, setSaveError) => {
         if (isValid) api.updateProfile(userEmail ? userEmail : email, userName ? userName : name).then(data => {
             setName(userName ? userName : name);
             setEmail(userEmail ? userEmail : email);
-        }).catch(err => console.log(err));
+            setSaveError(null);
+        }).catch(err => {
+            console.log(err);
+            setSaveError(err);
+        });
     };
 
-    const onLogin = (e, email, password) => {
+    const onLogin = async (e, email, password) => {
         e.preventDefault();
-        authApi.authorization(email, password).then(data => {
+        setLoading(true);
+        await authApi.authorization(email, password).then(data => {
             if (data.token) {
                 history('/movies');
                 localStorage.setItem('jwt', data.token);
@@ -50,19 +57,22 @@ function App() {
             } else {
                 history('/signin');
             }
-        });
+        }).catch(err => console.log(err));;
+        setLoading(false);
     };
 
-    const onRegister = (e, userName, userEmail, userPassword, isValid) => {
+    const onRegister = async (e, userName, userEmail, userPassword, isValid) => {
         e.preventDefault();
         if (isValid) {
-            authApi.register(userName, userEmail, userPassword).then(resp => {
+            setLoading(true);
+            await authApi.register(userName, userEmail, userPassword).then(resp => {
                 history('/movies');
                 localStorage.setItem("jwt", resp.data.token);
                 setloggedIn(true);
             }).catch(err => {
                 console.log(err);
             });
+            setLoading(false);
         };
     };
 
@@ -83,11 +93,13 @@ function App() {
         <UserContext.Provider value={{name: name, email: email}}>
             <Routes>
                 <Route path='/'  element={<Main />}/>
-                <Route path='/movies' element={<Movies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
-                <Route path='/profile' element={<Profile loggedIn={loggedIn} onProfileChange={onProfileChange}/>}/>
-                <Route path='/saved-movies' element={<SavedMovies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
-                <Route path='/signup' element={<Register onRegister={onRegister}/>}/>
-                <Route path='/signin' element={<Login onLogin={onLogin}/>}/>
+                <Route element={<ProtectedRoutes/>}>
+                    <Route path='/movies' element={<Movies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
+                    <Route path='/profile' element={<Profile loggedIn={loggedIn} onProfileChange={onProfileChange}/>}/>
+                    <Route path='/saved-movies' element={<SavedMovies loggedIn={loggedIn} foundMovies={foundMovies} submitSearch={submitSearch} isSearchPerformed={isSearchPerformed} isFound={isFound}/>}/>
+                </Route>
+                <Route path='/signup' element={<Register onRegister={onRegister} loading={loading}/>}/>
+                <Route path='/signin' element={<Login onLogin={onLogin} loading={loading}/>}/>
                 <Route path='/*' element={<PageNotFound/>}/>
             </Routes>
         </UserContext.Provider>

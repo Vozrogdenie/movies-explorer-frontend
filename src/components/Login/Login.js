@@ -12,6 +12,10 @@ function Login(props) {
         setPassword(e.target.value);
     };
 
+    const onSubmit = (e, email, password) => {
+        if (!props.loading) props.onLogin(e, email, password)
+    }
+
     return(
         <div className="login register">
             <a href="/" className='login register__logo'><img src={headLogo} alt="Логотип"/></a>
@@ -24,7 +28,7 @@ function Login(props) {
                 <input onChange={onPasswordChange} required  type="password" name="password" minLength="4" placeholder="Пароль" maxLength="20"className="login register__input"></input>
                 <span className="login register__error">Поле должно быть заполнено. Минимум 4 символа и максимум 20.</span>
             </form>
-            <button onClick={e => props.onLogin(e, email, password)} className="login register__register">Войти</button>
+            <button onClick={e => onSubmit(e, email, password)} className="login register__register">Войти</button>
             <p className="login register__title">Еще не зарегистрированы?&nbsp; <a href="/signup"> Регистрация</a></p>
         </div>
     )
