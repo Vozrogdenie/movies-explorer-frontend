@@ -1,0 +1,10 @@
+.login .register__register{
+    margin-top: 179px;
+}
+
+@media (max-width:440px) {
+    .login .register__register {
+        margin-top: 267px;
+        cursor: pointer;
+    }
+}
