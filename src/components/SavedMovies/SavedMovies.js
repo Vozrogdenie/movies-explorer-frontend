@@ -5,6 +5,9 @@ import FilterCheckbox from '../Movies/FilterCheckbox/FilterCheckbox';
 import MoviesCard from '../Movies/MoviesCard/MoviesCard';
 import Footer from '../Footer/Footer'
 import api from '../../utils/MainApi';
+import { forty_minutes } from '../../utils/const';
+import { four_hundred_and_eighty_minutes } from '../../utils/const';
+import { one_thousand_two_hundred_and_eighty_minutes } from '../../utils/const';
 
 function SavedMovies(props) {
     const [savedMovies, setSavedMovies] = useState([]);
@@ -42,24 +45,24 @@ function SavedMovies(props) {
         let initLength = 0;
         if (isSearchPerformed && isFound) {
             if (isShortOnly) {
-                arr = props.foundMovies.filter(movie => movie.duration <= 40).slice(0, getInitCounter(window.innerWidth));
-                initLength = props.foundMovies.filter(movie => movie.duration <= 40).length;
+                arr = props.foundMovies.filter(movie => movie.duration <= forty_minutes).slice(0, getInitCounter(window.innerWidth));
+                initLength = props.foundMovies.filter(movie => movie.duration <= forty_minutes).length;
             } else {
                 arr = props.foundMovies.slice(0, getInitCounter(window.innerWidth));
                 initLength = props.foundMovies.length;
             };
         } else if (newMovies) {
             if (isShortOnly) { 
-                arr = newMovies.filter(movie => movie.duration <= 40).slice(0, getInitCounter(window.innerWidth));
-                initLength = newMovies.filter(movie => movie.duration <= 40).length;
+                arr = newMovies.filter(movie => movie.duration <= forty_minutes).slice(0, getInitCounter(window.innerWidth));
+                initLength = newMovies.filter(movie => movie.duration <= forty_minutes).length;
             } else {
                 arr = newMovies.slice(0, getInitCounter(window.innerWidth));
                 initLength = newMovies.length;
             };
         } else {
             if (isShortOnly) { 
-                arr = savedMovies.filter(movie => movie.duration <= 40).slice(0, getInitCounter(window.innerWidth));
-                initLength = savedMovies.filter(movie => movie.duration <= 40).length;
+                arr = savedMovies.filter(movie => movie.duration <= forty_minutes).slice(0, getInitCounter(window.innerWidth));
+                initLength = savedMovies.filter(movie => movie.duration <= forty_minutes).length;
             } else {
                 arr = savedMovies.slice(0, getInitCounter(window.innerWidth));
                 initLength = savedMovies.length;
@@ -78,9 +81,9 @@ function SavedMovies(props) {
         setCardCounter(getCounter(width));
         if (props.isSearchPerformed && props.isFound) {
             if (isShortOnly) {
-                setMoviesToShow(props.foundMovies.filter(movie => movie.duration <= 40).slice(0, getCounter(width)));
-                finalLength = props.foundMovies.filter(movie => movie.duration <= 40).slice(0, getCounter(width)).length;
-                initLength = props.foundMovies.filter(movie => movie.duration <= 40).length;
+                setMoviesToShow(props.foundMovies.filter(movie => movie.duration <= forty_minutes).slice(0, getCounter(width)));
+                finalLength = props.foundMovies.filter(movie => movie.duration <= forty_minutes).slice(0, getCounter(width)).length;
+                initLength = props.foundMovies.filter(movie => movie.duration <= forty_minutes).length;
             } else {
                 setMoviesToShow(props.foundMovies.slice(0, getCounter(width)));
                 finalLength = props.foundMovies.slice(0, getCounter(width)).length;
@@ -88,9 +91,9 @@ function SavedMovies(props) {
             };
         } else {
             if (isShortOnly) {
-                setMoviesToShow(savedMovies.filter(movie => movie.duration <= 40).slice(0, getCounter(width)));
-                finalLength = savedMovies.filter(movie => movie.duration <= 40).slice(0, getCounter(width)).length;
-                initLength = savedMovies.filter(movie => movie.duration <= 40).length;
+                setMoviesToShow(savedMovies.filter(movie => movie.duration <= forty_minutes).slice(0, getCounter(width)));
+                finalLength = savedMovies.filter(movie => movie.duration <= forty_minutes).slice(0, getCounter(width)).length;
+                initLength = savedMovies.filter(movie => movie.duration <= forty_minutes).length;
             } else {
                 setMoviesToShow(savedMovies.slice(0, getCounter(width)));
                 finalLength = savedMovies.slice(0, getCounter(width)).length;
@@ -101,19 +104,19 @@ function SavedMovies(props) {
     };
 
     const getInitCounter = (width) => {
-        if (width >= 1280) {
+        if (width >= one_thousand_two_hundred_and_eighty_minutes) {
             return 12;
-        } else if (width >= 480 && width < 1280) {
+        } else if (width >= four_hundred_and_eighty_minutes && width < one_thousand_two_hundred_and_eighty_minutes) {
             return 8;
-        } else if (width < 480) {
+        } else if (width < four_hundred_and_eighty_minutes) {
             return 5;
         };
     };
 
     const getCounter = (width) => {
-        if (width >= 1280) {
+        if (width >= one_thousand_two_hundred_and_eighty_minutes) {
             return cardCounter+3;
-        } else if (width < 1280) {
+        } else if (width < one_thousand_two_hundred_and_eighty_minutes) {
             return cardCounter+2;
         };
     };

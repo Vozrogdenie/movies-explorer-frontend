@@ -41,34 +41,34 @@ function Header(props) {
                     {burger ?
                         <div className='header__open'>
                             <div className='header__block'>
-                                <a href="/" type='button' className="header__main" onClick={props.onLogout}> Главная</a>
-                                <a href="/movies" type='button' className="header__linkRegistered" onClick={props.onLogout}> {props.link}</a>
-                                <a href="/saved-movies" className="header__linkTwoRegistered" onClick={props.onLogout}> {props.linkTwo}</a>
+                                <Link to="/" type='button' className="header__main" onClick={props.onLogout}> Главная</Link>
+                                <Link to="/movies" type='button' className="header__linkRegistered" onClick={props.onLogout}> {props.link}</Link>
+                                <Link to="/saved-movies" className="header__linkTwoRegistered" onClick={props.onLogout}> {props.linkTwo}</Link>
                             </div>
                             <div className='header__registeredAccaunt' to="/profile">
-                                <a href="/profile" rel="stylesheet" type='button' className="header__accaunt" onClick={props.onLogout}> {props.accaunt}</a>
-                                <a href="/profile" rel="stylesheet" className='heaader__accaunt'><img src={humenAccaunt} className="header__humen" alt="Картинка перехода на аккаунт" /></a>
+                                <Link to="/profile" rel="stylesheet" type='button' className="header__accaunt" onClick={props.onLogout}> {props.accaunt}</Link>
+                                <Link to="/profile" rel="stylesheet" className='heaader__accaunt'><img src={humenAccaunt} className="header__humen" alt="Картинка перехода на аккаунт" /></Link>
                             </div>
                         </div>
                         : <div className='header__close'>
                             <div className='header__block'>
 
-                                <a href="/movies" type='button' className="header__linkRegistered"  onClick={props.onLogout}> {props.link}</a>
-                                <a href="/saved-movies" className="header__linkTwoRegistered" onClick={props.onLogout}> {props.linkTwo}</a>
+                                <Link to="/movies" type='button' className="header__linkRegistered"  onClick={props.onLogout}> {props.link}</Link>
+                                <Link to="/saved-movies" className="header__linkTwoRegistered" onClick={props.onLogout}> {props.linkTwo}</Link>
                             </div>
                             <div className='header__registeredAccaunt'>
-                                <a href="/profile" type='button' className="header__accaunt" onClick={props.onLogout}> {props.accaunt}</a>
-                                <a href="/profile" className='heaader__accaunt'><img src={humenAccaunt} className="header__humen" alt="Картинка перехода на аккаунт" /></a>
+                                <Link to="/profile" type='button' className="header__accaunt" onClick={props.onLogout}> {props.accaunt}</Link>
+                                <Link to="/profile" className='heaader__accaunt'><img src={humenAccaunt} className="header__humen" alt="Картинка перехода на аккаунт" /></Link>
                             </div>
                         </div>
                     }
                 </header>
                 :
                 <header className="header">
-                    <a href="/"  className='header__logo'><img src={headLogo} alt="Логотип" /></a>
+                    <Link to="/"  className='header__logo'><img src={headLogo} alt="Логотип" /></Link>
                     <div className='header__record'> 
-                        <p  type='button' className="header__link" > <a href="/signup"> {props.link}</a></p>
-                        <button className='header__button' type='button'><a href="/signin" className="header__linkTwo"> {props.linkTwo}</a></button>
+                        <p  type='button' className="header__link" > <Link to="/signup"> {props.link}</Link></p>
+                        <button className='header__button' type='button'><Link to="/signin" className="header__linkTwo"> {props.linkTwo}</Link></button>
                     </div>
                 </header>
             }

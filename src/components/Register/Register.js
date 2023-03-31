@@ -1,6 +1,7 @@
 import headLogo from '../../images/logo.png'
 import React from 'react';
 import useFormWithValidation from '../hooks/useFormWithValidation';
+import { Link } from 'react-router-dom';
 function Register(props) {
 
     const {
@@ -19,7 +20,7 @@ function Register(props) {
     return(
         <div className="register" id='register'>
             {props.children}
-            <a href="/" className='register__logo'><img src={headLogo} alt="Логотип"/></a>
+            <Link to="/" className='register__logo'><img src={headLogo} alt="Логотип"/></Link>
             <h3 className="register__welcom">Добро пожаловать!</h3>
             <form className="register__form">
                 <label id="name" name="name" className="register__label" >Имя</label>
@@ -33,7 +34,7 @@ function Register(props) {
                 <span className="register__error">Поле должно быть заполнено. Минимум 4 символа и максимум 20.</span>
             </form>
             <button onClick={e => onSubmit(e, name, email, password, isValid)} disabled={!isValid} className="register__register">Зарегистрироваться</button>
-            <p className="register__title">Уже зарегистрированы?&nbsp; <a href="/signin"> Войти</a></p>
+            <p className="register__title">Уже зарегистрированы?&nbsp; <Link to="/signin"> Войти</Link></p>
         </div>
     )
 }

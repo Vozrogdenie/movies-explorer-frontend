@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import headLogo from '../../images/logo.png';
+import { Link } from 'react-router-dom';
 
 function Login(props) {
     const [email, setEmail] = useState();
@@ -18,7 +19,7 @@ function Login(props) {
 
     return(
         <div className="login register">
-            <a href="/" className='login register__logo'><img src={headLogo} alt="Логотип"/></a>
+            <Link to="/" className='login register__logo'><img src={headLogo} alt="Логотип"/></Link>
             <h3 className="login register__welcom">Рады видеть!</h3>
             <form  className="login register__form">
                 <label  className="login register__label">E-mail</label>
@@ -29,7 +30,7 @@ function Login(props) {
                 <span className="login register__error">Поле должно быть заполнено. Минимум 4 символа и максимум 20.</span>
             </form>
             <button onClick={e => onSubmit(e, email, password)} className="login register__register">Войти</button>
-            <p className="login register__title">Еще не зарегистрированы?&nbsp; <a href="/signup"> Регистрация</a></p>
+            <p className="login register__title">Еще не зарегистрированы?&nbsp; <Link to="/signup"> Регистрация</Link></p>
         </div>
     )
 }

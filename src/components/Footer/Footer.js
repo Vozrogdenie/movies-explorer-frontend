@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 function Footer() {
@@ -7,8 +8,8 @@ function Footer() {
             <div className="footer__footer">
                 <p>&copy; 2023</p>
                 <div className="footer__avtor">
-                    <a href="https://practicum.yandex.ru" target="_blank">Яндекс практикум</a>
-                    <a href="https://github.com/Vozrogdenie" target="_blank">Github</a>
+                    <Link to="https://practicum.yandex.ru" target="_blank">Яндекс практикум</Link>
+                    <Link to="https://github.com/Vozrogdenie" target="_blank">Github</Link>
                 </div>
             </div>
         </footer>

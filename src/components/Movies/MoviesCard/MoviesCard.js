@@ -1,6 +1,7 @@
 import trach from '../../../images/trach.png';
 import heart from '../../../images/like.png';
 import { timeParseRU } from '../../../utils/timeParser';
+import { Link } from 'react-router-dom';
 
 function MoviesCard(props) {
 
@@ -12,7 +13,7 @@ function MoviesCard(props) {
                     <button className="moviesCard__trachMovies" onClick={() => props.deleteSavedMovie(props.card.movieId)} type="button" aria-label="Удалить фильм" >
                         <img className="moviesCard__trach" src={trach} alt="Удалить" />
                     </button>
-                    <a className="moviesCard__trailer" href={props.card.trailerLink} target="_blank" rel="noreferrer"><img className="moviesCard__video" src={props.card.image} alt='картинка видео' ></img></a>
+                    <Link className="moviesCard__trailer" to={props.card.trailerLink} target="_blank" rel="noreferrer"><img className="moviesCard__video" src={props.card.image} alt='картинка видео' ></img></Link>
                     
                     <div className="moviesCard__description">
                         <p className="moviesCard__title">{props.card.nameRU}</p>
@@ -27,7 +28,7 @@ function MoviesCard(props) {
                         </button>
                         : <button className='moviesCard_save' onClick={() => props.saveMovie(props.card)} type='button'>Сохранить</button>
                     }
-                    <a className="moviesCard__trailer" href={props.card.trailerLink} target="_blank" rel="noreferrer"><img className="moviesCard__video" src={'https://api.nomoreparties.co' + props.card.image.url} alt='картинка видео' /></a>
+                    <Link className="moviesCard__trailer" to={props.card.trailerLink} target="_blank" rel="noreferrer"><img className="moviesCard__video" src={'https://api.nomoreparties.co' + props.card.image.url} alt='картинка видео' /></Link>
                     
                     <div className="moviesCard__description">
                         <p className="moviesCard__title">{props.card.nameRU}</p>

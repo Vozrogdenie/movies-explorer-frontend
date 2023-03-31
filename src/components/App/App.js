@@ -79,6 +79,7 @@ function App() {
     const submitSearch = (moviesArray, value) => {
         if (value.length) {
             const foundMovies = moviesArray.filter(movie => movie.nameRU.toLowerCase().includes(value.toLowerCase()));
+            localStorage.setItem('foundMovies', JSON.stringify(foundMovies));
             setFoundMovies(foundMovies);
             setIsSearchPerformed(true);
             setIsFound(foundMovies.length > 0 ? true : false);

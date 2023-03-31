@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import Header from "../Header/Header";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext";
 
 function Profile(props) {
@@ -12,7 +12,11 @@ function Profile(props) {
     const [isValid, setIsValid] = useState(false);
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [submitDisabled, setSubmitDisabled] = useState(true);
-    const [newUser, setNewUser] = useState({name: context.name, email: context.email});
+    const [newUser, setNewUser] = useState({name: useContext(UserContext).name, email: useContext(UserContext).email});
+
+    useEffect(() => {
+        setNewUser(context);
+    }, [context])
 
     const onLogoff = (e) => {
         e.preventDefault();
@@ -69,7 +73,7 @@ function Profile(props) {
                 </form>
                 {formSubmitted ? <span className={!Object.keys(errors).length || !saveError ? "register__ok" : "refister__err"}>{!Object.keys(errors).length || !saveError ? "Данные успешно обновлены." : "Произошла ошибка. Попробуйте позже."}</span>:[]}
                 <button onClick={(e) => onSubmit(e)} disabled={!isValid || submitDisabled} className="profile__edit" type="button">Редактировать</button>
-                <button onClick={onLogoff} className="profile__exit" type="button"><a href="/signin" className="profile__exit"> Выйти из аккаунта</a></button>
+                <button onClick={onLogoff} className="profile__exit" type="button"><Link to="/signin" className="profile__exit"> Выйти из аккаунта</Link></button>
             </section>
         </>
     )
